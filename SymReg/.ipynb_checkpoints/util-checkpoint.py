@@ -1,3 +1,7 @@
+################################
+# Author: Diptarko Choudhury
+################################
+
 import torch
 import matplotlib.pyplot as plt
 import numpy as np
@@ -133,7 +137,7 @@ def trainer(data,
     
     loss_space = []
     loss_oracle = []
-    for epoch in range(NEpochs):
+    for epoch in tqdm(range(NEpochs)):
         
         loss_S_closure_ = 0
         loss_S_orth_ = 0
@@ -143,7 +147,7 @@ def trainer(data,
         loss_oracle_ = 0
         
         index = torch.randperm(data.shape[0])
-        for i in tqdm(range(0,(data.shape[0]//BATCH_SIZE)+1)):
+        for i in range(0,(data.shape[0]//BATCH_SIZE)+1):
             z = data[index[i*BATCH_SIZE:(i+1)*BATCH_SIZE],:]
             
             optimiser_symmetry.zero_grad()

@@ -1,2 +1,5 @@
 **/*.pdf
 **/*.h5
+*.npy
+*.pyc
+/LieGan/.ipynb_checkpoints

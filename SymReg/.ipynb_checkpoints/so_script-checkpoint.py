@@ -4,14 +4,26 @@ import numpy as np
 import os
 import h5py as h5
 import sys
+import argparse
 
 
 if __name__ == "__main__":
 
-    ORDER = int(sys.argv[1])
-    device = f"cuda:{int(sys.argv[2])}"
+    parser = argparse.ArgumentParser(description="Training configuration")
+
+    parser.add_argument("--order", type=int, default=2,
+                        help="order of SO-symmetry group")
+    parser.add_argument("--store_idx", type=str, default="generator",
+                            help="Idx of the generator whose weights will be stored")
     
-    EPOCHS = 10
+    input_args = parser.parse_args()
+
+    ORDER = input_args.order
+    idx = input_args.store_idx
+    
+    device = "cuda:0"
+    
+    EPOCHS = 25
     NGenerators = int((ORDER*(ORDER-1))/2)
     
     
@@ -37,15 +49,15 @@ if __name__ == "__main__":
                 BATCH_SIZE = BATCH_SIZE,
                 NUM_GENERATORS = NGenerators,
                 device = device,
-                eps=1e-10
+                eps=1e-18
                )
     
-    result_save_path = "./Results/"
+    result_save_path = "./ExperimentWeights"
     generators = np.concatenate([np.array(group.algebra.detach().cpu())[:,:,None] for group in model_symmetry.group],-1)
-    SAVE_PATH = os.path.join(result_save_path,f"result_SO_{ORDER}.h5")
+    SAVE_PATH = os.path.join(result_save_path,f"result_SO_{ORDER}_{idx}.h5")
     if os.path.exists(SAVE_PATH):
         os.remove(SAVE_PATH)    
-    file = h5.File(os.path.join(result_save_path,f"result_SO_{ORDER}.h5"),"w")
+    file = h5.File(os.path.join(result_save_path,f"result_SO_{ORDER}_{idx}.h5"),"w")
     generator_group = file.create_group("Group")
     history_group = file.create_group("History")
     
