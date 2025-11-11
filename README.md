@@ -6,12 +6,22 @@ Inductive Biasing a Neural Network is one of the most important aspect when it c
 
 The use of symmeties as inductive biases have shown excellent results when it comes to various downstream tasks as can be seen in [1](https://arxiv.org/abs/1703.06114),[2](https://arxiv.org/pdf/1905.11697),[3](https://arxiv.org/abs/2006.04780),[4](https://arxiv.org/abs/2201.08187) and [5](https://arxiv.org/abs/1612.08498).
 
-![](https://codimd.web.cern.ch/uploads/upload_003d2c33bb299642cb337623a5eb4965.gif)
+<p align="center">
+  <img src="store/so2.gif" width="100%">
+</p>
+
+
+
+
 
 Even though symmetries offer better inductive biases, stronger expressive capacities and are more data efficient identifying the correct symmetry group that will help with the down stream task is something that is very difficult to determine. When wrong symmetry groups are used as inductive biases it ends up hurting the performance instead of providing any good. One good example to demonstrate this would be the MNIST dataset. For most part in the MNIST dataset the rotation symmetry group (SO(2)) helps with the classification performance but fails in the case of classifying between 6s and 9s where the SO(2) invariance is no longer true for the classification task. An SO(2) invariant neural network will perform very poorly (if not completly randomly) when met with such situations. Works like Augerino ([6](https://arxiv.org/pdf/2010.11882)) tries to address this by learning the extent of transformation (under symmetry) that is suitable before the performance starts going down.
 
 
-![](https://codimd.web.cern.ch/uploads/upload_cc9356228bba95d2af7a8fe20c101f6f.png)
+<p align="center">
+  <img src="https://codimd.web.cern.ch/uploads/upload_cc9356228bba95d2af7a8fe20c101f6f.png" width="60%">
+</p>
+
+
 The above figure taken from [Augerino](https://arxiv.org/pdf/2010.11882) shows how rotating the 6 after a certain extent starts to hurt the performance, the paper tries to address this by learning the extent of transformation after which the loss starts to increase.
 
 Even though Augerino manages to address the problem (of finding extent of symmetry transform) upto a certain extent the problem of indentifying the correct symmetry group suitable for a downstream task remains more or less unaddressed. 
@@ -28,33 +38,34 @@ This work was heavily inspired from the LieGAN setup but it differs from it sign
 
 **Dataset**: We define a dataset as an ordered pair $(X, y)$, where $X \in \mathbb{R}^m$ is the input vector and $y \in \mathbb{R}^n$ is the corresponding target or label vector. We denote the dataset as:
 
-$$
-\mathcal{D} = \{(X, y) \mid X \in \mathbb{R}^m,\ y \in \mathbb{R}^n\}
-$$
+$$\mathcal{D} = \{(X, y) \mid X \in \mathbb{R}^m,\ y \in \mathbb{R}^n\}$$
 
 **Oracle**: We define the Oracle function $\psi$ as a mapping from $\mathbb{R}^m$ to $\mathbb{R}^n$, such that:
 
-$$
-\psi(X) = y
-$$
+$$\psi(X) = y$$
+
 The orcale can both be learned from the ordered pair $(X, y)$ or simply embedded as a function where the analytic form of it is known.
 
 **Encoder**: The encoder is a function $f_e$ such that it maps $X \in \mathbb{R}^m$ to a latent vector in $\mathbb{R}^\ell$, where $\ell$ is the latent dimension:
+
 $$
 f_e: \mathbb{R}^m \rightarrow \mathbb{R}^\ell
 $$
 
 **Decoder**: The decoder is a function $f_d$ such that it maps latent vectors from $\mathbb{R}^\ell$ back to the input space $\mathbb{R}^m$:
+
 $$
 f_d: \mathbb{R}^\ell \rightarrow \mathbb{R}^m
 $$
 
 **Latent**: The latent representation $Z$ of an input $X$ is given by:
+
 $$
 Z = f_e(X)
 $$
 
 **Reconstruction**: The reconstruction $\tilde{X}$ from a latent vector $Z$ is given by:
+
 $$
 \tilde{X} = f_d(Z)
 $$
@@ -148,7 +159,7 @@ $$
 \mathcal{L}_{\text{orth}} = \sum_{1 \leq i < j \leq k} \left( \langle \hat{J}_i, \hat{J}_j \rangle_F \right)^2
 $$
 
-where $\langle A, B \rangle_F = \operatorname{Tr}(A^\top B)$ denotes the Frobenius (Hilbert-Schmidt) inner product.
+where $\langle A, B \rangle_F = \mathrm{Tr}(A^\top B)$ denotes the Frobenius (Hilbert-Schmidt) inner product.
 
 This encourages the generators to as different from each other as possible.
 
@@ -182,17 +193,26 @@ $$
 Using our method we can easily discover the SO(N) group for the values of N upto 10, after which it becomes computationally expensive. All these generators are very close to their text-book counter parts and have very small degree of error within them.
 
 ### $\mathrm{SO}(3)$
-![](https://codimd.web.cern.ch/uploads/upload_92ae8abaf07fba08b1418eef0373ca62.png)
+
+<p align="center">
+  <img src="https://codimd.web.cern.ch/uploads/upload_92ae8abaf07fba08b1418eef0373ca62.png" width="100%">
+</p>
 
 ### $\mathrm{SO}(4)$
-![](https://codimd.web.cern.ch/uploads/upload_9b5f465f066c855fbd2d3b2e005c9814.png)
+
+<p align="center">
+  <img src="https://codimd.web.cern.ch/uploads/upload_9b5f465f066c855fbd2d3b2e005c9814.png" width="100%">
+</p>
 
 ### $\mathrm{SO}(5)$
-![](https://codimd.web.cern.ch/uploads/upload_db771e04a7e1a9e0c7e3f0d156c14a1b.png)
+<p align="center">
+  <img src="https://codimd.web.cern.ch/uploads/upload_db771e04a7e1a9e0c7e3f0d156c14a1b.png" width="100%">
+</p>
 
 ### $\mathrm{SO}(10)$
-![](https://codimd.web.cern.ch/uploads/upload_930d830abba953a97b26c37871f7b9b0.png)
-
+<p align="center">
+  <img src="https://codimd.web.cern.ch/uploads/upload_930d830abba953a97b26c37871f7b9b0.png" width="100%">
+</p>
 
 ### $\mathrm{SO}^+(3,1)$ — Proper Orthocheronous Lorentz Group
 
@@ -201,8 +221,10 @@ The group $\mathrm{SO}^+(3,1)$ is the **proper orthochronous Lorentz group**, a 
 Formally, it is defined as:
 
 $$
-\mathrm{SO}^+(3,1) = \left\{ \Lambda \in \mathbb{R}^{4 \times 4} \ \middle|\ \Lambda^\top \eta \Lambda = \eta,\ \det(\Lambda) = 1,\ \Lambda^0_0 \geq 1 \right\}
+\mathrm{SO}^+(3,1) = \\\{ \Lambda \in \mathbb{R}^{4\times4} \mid \Lambda^\top \eta \Lambda = \eta,\ \det(\Lambda)=1,\ \Lambda^{0}{}_0 \ge 1 \\\}
 $$
+
+
 
 where $\eta$ is the Minkowski metric:
 
@@ -226,8 +248,10 @@ for any four-vector $x = (t, x, y, z)^\top \in \mathbb{R}^{4}$. That is,
 $$
 \psi(\Lambda x) = \psi(x), \quad \forall \Lambda \in \mathrm{SO}^+(3,1)
 $$
-![](https://codimd.web.cern.ch/uploads/upload_dc3a517097aae4770b9178086c83fdc0.png)
 
+<p align="center">
+  <img src="https://codimd.web.cern.ch/uploads/upload_dc3a517097aae4770b9178086c83fdc0.png" width="100%">
+</p>
 
 ## Comparison with LieGAN
 
@@ -237,14 +261,22 @@ Here we compare the results of our implementation of Symmetry Regression (SymReg
 
 Comparing the LieGAN (using their implementation) discovered symmetry generators of $\mathrm{SO}(3)$ with the ones generated with Symreg (ours) we see that LieGAN has a tendency to mix up the generator. Both the techniques were trained following similar conditions.
 
-![](https://codimd.web.cern.ch/uploads/upload_16afe991f24d08be9cefc5cdb0376808.png)
+<p align="center">
+  <img src="https://codimd.web.cern.ch/uploads/upload_16afe991f24d08be9cefc5cdb0376808.png" width="100%">
+</p>
+
 
 Below we see the effects of evolving a single vector over similar number of steps (degree of augmentation) using both the generators discovered by LieGAN and SymReg. As expected we see that the radial component of the vector keeps diverging with time for the case of LieGAN which indicates towards presence of noise in the generators. The divergence in the case of SymReg is orders of magnitude smaller.
 
-![](https://codimd.web.cern.ch/uploads/upload_434f3cae714b30161927138e1748d784.png)
+<p align="center">
+  <img src="https://codimd.web.cern.ch/uploads/upload_434f3cae714b30161927138e1748d784.png" width="60%">
+</p>
 
 We can also compare the mean error in closure loss for the generators discovered using the two methods and see that SymReg manages to minimise the error by a large margin when compared to LieGAN
-![](https://codimd.web.cern.ch/uploads/upload_14bb4ec96aa51f27297ef73d9770b010.png)
+
+<p align="center">
+  <img src="https://codimd.web.cern.ch/uploads/upload_14bb4ec96aa51f27297ef73d9770b010.png" width="60%">
+</p>
 
 ## Hidden Symmetry
 
@@ -305,7 +337,7 @@ The left scatter plot shows the original and the transformed datapoints. The plo
 </p>
 
 
-#### Case III — Mixed Nonlinear Perturbation: $X_{\text{new}} = \operatorname{sign}(X) \cdot \sqrt{|X|},\quad Y_{\text{new}} = e^{Y}$
+#### Case III — Mixed Nonlinear Perturbation: $X_{\text{new}} = \mathrm{sign}(X) \cdot \sqrt{|X|},\quad Y_{\text{new}} = e^{Y}$
 
 <p align="center">
   <img src="https://codimd.web.cern.ch/uploads/upload_89f3f5536882a41e9cf21747213940a9.png" width="48%" />
