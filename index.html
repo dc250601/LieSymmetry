@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symmetry Discovery - Academic Theme</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* --- 2. Base Setup & Variables --- */
+        :root {
+            --global-bg-color: #ffffff;
+            --global-text-color: #424242;
+            --global-theme-color: #007bff;
+            --global-hover-color: #0056b3;
+            --font-sans: 'Roboto', sans-serif;
+            --font-serif: 'Merriweather', serif;
+        }
+
+        body {
+            background-color: var(--global-bg-color);
+            color: var(--global-text-color);
+            font-family: var(--font-serif);
+            font-weight: 300;
+            line-height: 1.6;
+            font-size: 16px;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- 3. Typography Rules --- */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-sans);
+            color: #000;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-weight: 500;
+            font-size: 1.75rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5rem;
+            margin-top: 3rem;
+        }
+
+        h3 {
+            font-weight: 500;
+            font-size: 1.3rem;
+            color: #333;
+        }
+
+        p {
+            margin-bottom: 1.1rem;
+            font-size: 1.1rem;
+        }
+
+        strong {
+            font-weight: 700;
+            color: #222;
+        }
+
+        a {
+            color: var(--global-theme-color);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--global-hover-color);
+            text-decoration: underline;
+        }
+
+        /* --- 4. Layout & Navigation --- */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        nav {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 1.5rem 0;
+            margin-bottom: 3rem;
+            font-family: var(--font-sans);
+        }
+
+        nav .nav-brand {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        nav .nav-links a {
+            color: #555;
+            margin-left: 20px;
+            font-weight: 400;
+        }
+
+        nav .nav-links a:hover {
+            color: var(--global-theme-color);
+            text-decoration: none;
+        }
+
+        /* --- 5. Component Specifics --- */
+        
+        /* Figures & Images */
+        figure {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        img {
+            max-width: 90%;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin: 0 auto;
+            display: block;
+        }
+
+        /* Special handling for the side-by-side images in "Hidden Symmetry" */
+        .img-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .img-row img {
+            max-width: 100%; /* Let flex handle width */
+            margin: 0;
+        }
+
+        /* Math Styling */
+        .mjx-chtml {
+            font-size: 110% !important; /* Slight boost for readability */
+        }
+        
+        /* Lists */
+        ol, ul {
+            padding-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 5rem;
+            padding: 2rem 0;
+            border-top: 1px solid #eee;
+            text-align: center;
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        /* Algorithms / Code (if needed, though not explicitly in content) */
+        .algo-block {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+            padding: 1rem;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.9rem;
+            margin: 1.5rem 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav class="flex justify-between items-center">
+            <div class="nav-brand">Research Blog</div>
+            <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">Publications</a>
+                <a href="#">About</a>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+
+        <h1>Symmetry Discovery</h1>
+
+        <h2>Introduction</h2>
+        <p>
+            Inductive Biasing a Neural Network is one of the most important aspects when it comes to designing a network architecture for downstream tasks. In many neural network architectures inductive biases are explored and embedded into systems to make them robust, accurate and data efficient. Symmetry, an important form of inductive bias, is often used to design neural networks. Modern day machine learning (ML) explores symmetries in various different forms. Convolutional Neural Networks use translational symmetries, Graph Neural Networks use permutation symmetries while attention is known for permutation invariances. Symmetries are strong inductive biases that can be used to simplify learning and build explainable neural networks too.
+        </p>
+
+        <p>
+            The use of symmetries as inductive biases have shown excellent results when it comes to various downstream tasks as can be seen in <a href="https://arxiv.org/abs/1703.06114">[1]</a>, <a href="https://arxiv.org/pdf/1905.11697">[2]</a>, <a href="https://arxiv.org/abs/2006.04780">[3]</a>, <a href="https://arxiv.org/abs/2201.08187">[4]</a> and <a href="https://arxiv.org/abs/1612.08498">[5]</a>.
+        </p>
+
+        <figure>
+            <img src="store/so2.gif" alt="SO(2) Animation" onerror="this.style.display='none';">
+            <figcaption style="margin-top: 0.5rem; font-size: 0.9rem; color: #666; font-style: italic;">
+                [Image: store/so2.gif - Please ensure local file exists]
+            </figcaption>
+        </figure>
+
+        <p>
+            Even though symmetries offer better inductive biases, stronger expressive capacities and are more data efficient identifying the correct symmetry group that will help with the downstream task is something that is very difficult to determine. When wrong symmetry groups are used as inductive biases it ends up hurting the performance instead of providing any good. One good example to demonstrate this would be the MNIST dataset. For most part in the MNIST dataset the rotation symmetry group (SO(2)) helps with the classification performance but fails in the case of classifying between 6s and 9s where the SO(2) invariance is no longer true for the classification task. An SO(2) invariant neural network will perform very poorly (if not completely randomly) when met with such situations. Works like Augerino (<a href="https://arxiv.org/pdf/2010.11882">[6]</a>) tries to address this by learning the extent of transformation (under symmetry) that is suitable before the performance starts going down.
+        </p>
+
+        <figure>
+            <img src="https://codimd.web.cern.ch/uploads/upload_cc9356228bba95d2af7a8fe20c101f6f.png" style="width: 60%;" alt="Augerino Performance Graph">
+            <figcaption style="margin-top: 0.5rem; font-size: 0.9rem; color: #666; font-style: italic;">
+                Figure taken from Augerino showing performance degradation under rotation.
+            </figcaption>
+        </figure>
+
+        <p>
+            The above figure taken from <a href="https://arxiv.org/pdf/2010.11882">Augerino</a> shows how rotating the 6 after a certain extent starts to hurt the performance, the paper tries to address this by learning the extent of transformation after which the loss starts to increase.
+        </p>
+
+        <p>
+            Even though Augerino manages to address the problem (of finding extent of symmetry transform) upto a certain extent the problem of identifying the correct symmetry group suitable for a downstream task remains more or less unaddressed.
+        </p>
+
+        <p>
+            To solve this very problem the LieGAN paper (<a href="https://arxiv.org/abs/2302.00236">[7]</a>) was introduced, the main intent of which was to use an Adversarial setup to discover the symmetries that lied within the given problem set. Once the symmetries are discovered the associated generators for these symmetry groups can be easily extracted which can be later used to build exact equivariant models that have strong inductive biases embedded within them.
+        </p>
+
+        <p>
+            This work was heavily inspired from the LieGAN setup but it differs from it significantly. The main contributions of this work can be summarised as below.
+        </p>
+
+        <ol>
+            <li><strong>Removal of the Adversarial Game:</strong> LieGAN heavily relied on a adversarial setup for the task of symmetry discovery. The major problem with adversarial lossed are their tendency to collapse and instabilities with them. We have addressed this issue by removing the adversarial component thorugh reframing the problem and switching it with a more stable regression counterpart. This brings strong numerical stabilities and makes symmetry discovery possible for extremely large groups eg S0(10).</li>
+            <li><strong>Modifying and simplifying the regularisation components</strong> of the LieGAN loss. The new regularisation terms produce cleaner results and forces stronger orthogonality on the solution.</li>
+            <li><strong>Extending the task of symmetry discovery to complex systems</strong> where the symmetries are not expressible in linear form. In such cases a coordinate transformation has be discovered which brings the elements onto a coordinate space where symmetries can be easiliy discovered.</li>
+        </ol>
+
+        <h2>Definitions</h2>
+
+        <p>
+            <strong>Dataset</strong>: We define a dataset as an ordered pair $(X, y)$, where $X \in \mathbb{R}^m$ is the input vector and $y \in \mathbb{R}^n$ is the corresponding target or label vector. We denote the dataset as:
+            $$ \mathcal{D} = \{(X, y) \mid X \in \mathbb{R}^m,\ y \in \mathbb{R}^n\} $$
+        </p>
+
+        <p>
+            <strong>Oracle</strong>: We define the Oracle function $\psi$ as a mapping from $\mathbb{R}^m$ to $\mathbb{R}^n$, such that:
+            $$ \psi(X) = y $$
+            The orcale can both be learned from the ordered pair $(X, y)$ or simply embedded as a function where the analytic form of it is known.
+        </p>
+
+        <p>
+            <strong>Encoder</strong>: The encoder is a function $f_e$ such that it maps $X \in \mathbb{R}^m$ to a latent vector in $\mathbb{R}^\ell$, where $\ell$ is the latent dimension:
+            $$ f_e: \mathbb{R}^m \rightarrow \mathbb{R}^\ell $$
+        </p>
+
+        <p>
+            <strong>Decoder</strong>: The decoder is a function $f_d$ such that it maps latent vectors from $\mathbb{R}^\ell$ back to the input space $\mathbb{R}^m$:
+            $$ f_d: \mathbb{R}^\ell \rightarrow \mathbb{R}^m $$
+        </p>
+
+        <p>
+            <strong>Latent</strong>: The latent representation $Z$ of an input $X$ is given by:
+            $$ Z = f_e(X) $$
+        </p>
+
+        <p>
+            <strong>Reconstruction</strong>: The reconstruction $\tilde{X}$ from a latent vector $Z$ is given by:
+            $$ \tilde{X} = f_d(Z) $$
+        </p>
+
+        <p>
+            <strong>MSE</strong>: The mean squared error (MSE) is a function that takes two vectors $X = [X_1, \dots, X_N]$ and $\tilde{X} = [\tilde{X}_1, \dots, \tilde{X}_N]$ in $\mathbb{R}^{N \times m}$ and returns a scalar quantifying their squared difference. It is defined as:
+            $$ \text{MSE}(X, \tilde{X}) = \frac{1}{N} \sum_{i=1}^{N} \|X_i - \tilde{X}_i\|_2^2 $$
+        </p>
+
+        <p>
+            <strong>Generator</strong>: Let $\mathfrak{g}$ be the Lie algebra associated with a Lie group $G \subseteq \mathrm{GL}(d, \mathbb{R})$. The set $\{J_i\}$ denotes a basis of generators of $\mathfrak{g}$, where each $J_i \in \mathbb{R}^{d \times d}$.
+        </p>
+
+        <p>
+            <strong>Matrix Exponential</strong>: For a generator matrix $X \in \mathfrak{g}$, the exponential map is defined by the matrix exponential:
+            $$ \exp(X) = \sum_{n=0}^{\infty} \frac{X^n}{n!} $$
+            This map takes elements from the Lie algebra $\mathfrak{g}$ to the Lie group $G$, i.e.,
+            $$ \exp: \mathfrak{g} \to G $$
+        </p>
+
+        <p>
+            <strong>Operator</strong>: For a real parameter $\theta_i \in \mathbb{R}$ and generator $J_i$, we define the operator:
+            $$ \mathcal{O}_i = \exp(\theta_i J_i) $$
+        </p>
+
+        <p>
+            <strong>Symmetry Transform</strong>: We define a symmetry transformation $f_s$ as the ordered product of exponentials over all generators, we follow this formulation primarily from the LieGAN paper:
+            $$ f_s(\{\theta_i\}) =  \exp(\sum_{i=1}^{k}\theta_i J_i) $$
+            where $k$ is the number of generators used. Each transformation is parameterized by a real scalar $\theta_i \in \mathbb{R}$, which controls the strength of the generator $J_i$ in the exponential map. In prior work such as <em>Augerino</em>, these parameters $\theta_i$ are treated as learnable and optimized during training.
+            In our setting, we simplify the model by sampling the parameters $\theta_i$ from a uniform distribution over the interval $[-1, 1]$.
+        </p>
+
+        <p>
+            <strong>Invariance</strong>:<br>
+            We define a transformation $F: \mathbb{R}^m \to \mathbb{R}^m$ to be a <strong>invariance</strong> with respect to $\Psi: \mathbb{R}^m \to \mathbb{R}^n$ if:
+            $$ \Psi(F(x)) = \Psi(x) $$
+        </p>
+
+        <h2>Model Architecture</h2>
+
+        <p>
+            The architecture and losses for the symmetry discovery model is surprisingly simple given that it does not have any adversarial component associated to it. The symmetry discovery model for simple datasets where a infinitesimal group element can be written as a linear function $J_i$ is simply the symmetry transform $f_s$. The situation complicates when this is no longer true. The parameters of $f_s$ are estimated using gradient descent by minimising the following loss components.
+        </p>
+
+        <h3>Closure Loss</h3>
+        <p>
+            Given that we want to discover the transformations $f_s$ that are invariant to $\psi$ we define our first loss as:
+            $$ \mathcal{L}_{\text{closure}} = \text{MSE}(\psi(X), \psi(X_{\text{transform}})) $$
+            where,
+            $$ X_{\text{transform}} = \exp\left(\sum_{i=1}^{k} \theta_i J_i\right) \cdot X $$
+            Here, $\theta_i \in \mathbb{R}$ are sampled from a distribution (learned or uniform).
+        </p>
+
+        <h3>Collapse Loss</h3>
+        <p>
+            The most trivial transformation that minimizes the closure loss $\mathcal{L}_{\text{closure}}$ is the <strong>identity transformation</strong>, i.e., when the input remains unchanged under the action of the transformation that is when all generator matrices are zero:
+            $$ J_i = 0_{d \times d}, \quad \forall i $$
+            To prevent the system from trivially collapsing to Identity transformation we use following loss function:
+        </p>
+        <p>
+            We define an identity-regularization loss that penalizes when the transformation becomes trivially close to the identity. The loss is defined as:
+            $$ \mathcal{L}_{\text{collapse}} = \sum_{i=1}^{k} \left| \cos\left( \exp(\theta_i J_i) \cdot X,\ X \right) \right| $$
+            Setting $\theta_i$ to $1$ and absorbing the component of $X$ in the equation this expression simplifies to a cosine similarity between the transformation operator and the identity matrix:
+            $$ \Longrightarrow\quad \mathcal{L}_{\text{collapse}} = \sum_{i=1}^{k} \left| \cos\left( \exp(\theta_i J_i),\ I_d \right) \right| $$
+            The cosine is taken by flattening the transformation matrix.
+        </p>
+
+        <h3>Orthogonality Loss</h3>
+        <p>
+            To promote diversity and reduce redundancy among generators $\{J_1, \dots, J_k\}$, we define a loss that penalizes their pairwise inner products after Frobenius normalization.
+        </p>
+        <p>
+            Let $\hat{J}_i = \frac{J_i}{\|J_i\|_F}$ denote the Frobenius-normalized generator. Then the loss is:
+            $$ \mathcal{L}_{\text{orth}} = \sum_{1 \leq i < j \leq k} \left( \langle \hat{J}_i, \hat{J}_j \rangle_F \right)^2 $$
+            where $\langle A, B \rangle_F = \mathrm{Tr}(A^\top B)$ denotes the Frobenius (Hilbert-Schmidt) inner product.
+            This encourages the generators to as different from each other as possible.
+        </p>
+
+        <h2>Experiments</h2>
+
+        <p>We sample synthetically generate the datasets for a few well know symmetry groups.</p>
+
+        <h3>$\mathrm{SO}(N)$ — Special Orthogonal Group</h3>
+        <p>
+            The group $\mathrm{SO}(N)$ consists of all valid <strong>rotation transformations</strong> in $N$-dimensional Euclidean space. Formally,
+            $$ \mathrm{SO}(N) = \{ R \in \mathbb{R}^{N \times N} \mid R^\top R = I,\ \det(R) = 1 \} $$
+            This group preserves the <strong>Euclidean (L2) norm</strong>, i.e., it conserves the radial distance from the origin. For any $x \in \mathbb{R}^N$ and $R \in \mathrm{SO}(N)$:
+            $$ \|Rx\|_2 = \|x\|_2 $$
+            Hence, $\mathrm{SO}(N)$ represents all <strong>distance-preserving rotations</strong> around the origin in $N$ dimensions.
+        </p>
+        <p>
+            We define an oracle function $\psi$ that returns the squared norm of an input vector $x$:
+            $$ \psi(x) = \sum_{i=1}^{N} x_i^2 = \|x\|_2^2 $$
+            Using our method we can easily discover the SO(N) group for the values of N upto 10, after which it becomes computationally expensive. All these generators are very close to their text-book counter parts and have very small degree of error within them.
+        </p>
+
+        <h3>$\mathrm{SO}(3)$</h3>
+        <figure>
+            <img src="https://codimd.web.cern.ch/uploads/upload_92ae8abaf07fba08b1418eef0373ca62.png" alt="SO(3) Results">
+        </figure>
+
+        <h3>$\mathrm{SO}(4)$</h3>
+        <figure>
+            <img src="https://codimd.web.cern.ch/uploads/upload_9b5f465f066c855fbd2d3b2e005c9814.png" alt="SO(4) Results">
+        </figure>
+
+        <h3>$\mathrm{SO}(5)$</h3>
+        <figure>
+            <img src="https://codimd.web.cern.ch/uploads/upload_db771e04a7e1a9e0c7e3f0d156c14a1b.png" alt="SO(5) Results">
+        </figure>
+
+        <h3>$\mathrm{SO}(10)$</h3>
+        <figure>
+            <img src="https://codimd.web.cern.ch/uploads/upload_930d830abba953a97b26c37871f7b9b0.png" alt="SO(10) Results">
+        </figure>
+
+        <h3>$\mathrm{SO}^+(3,1)$ — Proper Orthocheronous Lorentz Group</h3>
+        <p>
+            The group $\mathrm{SO}^+(3,1)$ is the <strong>proper orthochronous Lorentz group</strong>, a subgroup of the full Lorentz group that consists of all <strong>orientation- and time-preserving</strong> linear transformations in $(3+1)$ dimensional Minkowski spacetime. Formally, it is defined as:
+            $$ \mathrm{SO}^+(3,1) = \{ \Lambda \in \mathbb{R}^{4\times4} \mid \Lambda^\top \eta \Lambda = \eta,\ \det(\Lambda)=1,\ \Lambda^{0}{}_0 \ge 1 \} $$
+            where $\eta$ is the Minkowski metric:
+            $$ \eta = \begin{bmatrix}
+            -1 & 0 & 0 & 0 \\
+            0 & 1 & 0 & 0 \\
+            0 & 0 & 1 & 0 \\
+            0 & 0 & 0 & 1
+            \end{bmatrix} $$
+            This group preserves the <strong>Minkowski spacetime interval</strong>:
+            $$ \psi(x) = -t^2 + x^2 + y^2 + z^2 = x^\top \eta x $$
+            for any four-vector $x = (t, x, y, z)^\top \in \mathbb{R}^{4}$. That is,
+            $$ \psi(\Lambda x) = \psi(x), \quad \forall \Lambda \in \mathrm{SO}^+(3,1) $$
+        </p>
+        <figure>
+            <img src="https://codimd.web.cern.ch/uploads/upload_dc3a517097aae4770b9178086c83fdc0.png" alt="Lorentz Group Results">
+        </figure>
+
+        <h2>Comparison with LieGAN</h2>
+        <p>
+            The motivation of this very work was to improve upon the idea of LieGAN. As seen from the last section we were quite successful in demonstrating the using regressional techniques can indeed work for symmetry discovery.
+        </p>
+        <p>
+            Here we compare the results of our implementation of Symmetry Regression (SymReg) with the LieGAN implementation interms of the closure loss or invariance loss.
+        </p>
+        <p>
+            Comparing the LieGAN (using their implementation) discovered symmetry generators of $\mathrm{SO}(3)$ with the ones generated with Symreg (ours) we see that LieGAN has a tendency to mix up the generator. Both the techniques were trained following similar conditions.
+        </p>
+        <figure>
+            <img src="https://codimd.web.cern.ch/uploads/upload_16afe991f24d08be9cefc5cdb0376808.png" alt="Comparison with LieGAN">
+        </figure>
+        <p>
+            Below we see the effects of evolving a single vector over similar number of steps (degree of augmentation) using both the generators discovered by LieGAN and SymReg. As expected we see that the radial component of the vector keeps diverging with time for the case of LieGAN which indicates towards presence of noise in the generators. The divergence in the case of SymReg is orders of magnitude smaller.
+        </p>
+        <figure>
+            <img src="https://codimd.web.cern.ch/uploads/upload_434f3cae714b30161927138e1748d784.png" style="width: 60%;" alt="Vector Evolution Divergence">
+        </figure>
+        <p>
+            We can also compare the mean error in closure loss for the generators discovered using the two methods and see that SymReg manages to minimise the error by a large margin when compared to LieGAN.
+        </p>
+        <figure>
+            <img src="https://codimd.web.cern.ch/uploads/upload_14bb4ec96aa51f27297ef73d9770b010.png" style="width: 60%;" alt="Closure Loss Error Comparison">
+        </figure>
+
+        <h2>Hidden Symmetry</h2>
+        <p>
+            When we discussed the nature of our symmetry discovery function we stated that the infinitesimal symmetry transformation can be written as a linear function of the generators of the symmetry. When this case is not true cannot compute the symmetry function as simply the exponential map of linear combination of generators.
+        </p>
+        <p>
+            This problem was described in the works of Tegmark et al. <a href="https://arxiv.org/abs/2109.09721">[8]</a>. Such systems call for a coordinate transform that maps the original space to a new one where the symmetry generators are linearly dependent on the infinitesimal transformation. This makes the problem a join optimisation task where both the symmetries are discovered along with the relevant coordinate transform.
+        </p>
+        <p>
+            We now extend our formulation to support <strong>latent-space symmetry discovery</strong> by introducing an encoder–decoder architecture. The idea is to first map the input to a latent space where the symmetry group acts <strong>linearly</strong>, apply the transformation, and then decode back to the input space.
+        </p>
+        <p>
+            Let:
+            <br>- $f_e: \mathbb{R}^m \to \mathbb{R}^\ell$ be the encoder,
+            <br>- $f_d: \mathbb{R}^\ell \to \mathbb{R}^m$ be the decoder,
+            <br>- $f_s = \exp\left(\sum_{i=1}^{k} \theta_i J_i\right)$ be the symmetry transformation acting in latent space.
+        </p>
+        <p>
+            Then the transformation proceeds as:
+            $$ Z_X = f_e(X) $$
+            $$ X_{\text{transformed}} = f_d(f_s \cdot Z_X) $$
+        </p>
+        <p>
+            The closure loss remains the same though the definition of transformation changes:
+            $$ \mathcal{L}_{\text{closure}} = \text{MSE}\left(\psi(X),\ \psi(X_{\text{transformed}})\right) $$
+            To ensure bijectivity of both $f_e$ and $f_d$ we add the fourth component of loss into our overall optimisation conditions.
+            $$ \mathcal{L}_{\text{AE}} = \text{MSE}\left(X,\ f_d(f_e(X))\right) $$
+            This acts as a regularizer that encourages the latent representation $Z_X = f_e(X)$ to retain sufficient information and prevents the latent space from collapsing to zero.
+        </p>
+        <p>
+            To demonstrate the efficacy of our proposed formulation, we evaluate its performance on a series of controlled toy examples. Specifically, we consider a scenario where the input space of a known $\mathrm{SO}(2)$ symmetry discovery problem is <strong>nonlinearly transformed</strong> by a predefined function. We then apply our encoder–decoder–based symmetry discovery model to this transformed space and assess whether it can successfully <strong>recover the underlying $\mathrm{SO}(2)$ symmetry</strong> that originally existed in the untransformed space.
+        </p>
+
+        <h3>Case I — Linear Scaling Perturbation: $X_{\text{new}} = 3X,\quad Y_{\text{new}} = Y$</h3>
+        <div class="img-row">
+            <div style="width: 48%;">
+                <img src="https://codimd.web.cern.ch/uploads/upload_563d4c151961b443277ee940e521d5dd.png" alt="Case I Scatter">
+            </div>
+            <div style="width: 45%;">
+                <img src="https://codimd.web.cern.ch/uploads/upload_864e0b1aea6d3a52fb1904c59085ceb2.png" alt="Case I Vector Field">
+            </div>
+        </div>
+        <p>
+            The left scatter plot shows the original and the transformed datapoints. The plot of the right has a scatter plot that shows coordinate transform that the encoder is embedding the latents to. The black arrows shows the invariant symmetry transformations associated to the blue points on the decoder space.
+        </p>
+
+        <h3>Case II — Exponential Perturbation: $X_{\text{new}} = e^{X},\quad Y_{\text{new}} = e^{Y}$</h3>
+        <div class="img-row">
+            <div style="width: 48%;">
+                <img src="https://codimd.web.cern.ch/uploads/upload_b0ec112445f23686204726ca72d79a44.png" alt="Case II Scatter">
+            </div>
+            <div style="width: 45%;">
+                <img src="https://codimd.web.cern.ch/uploads/upload_a38104de0678b7c92b012769729d7edc.png" alt="Case II Vector Field">
+            </div>
+        </div>
+
+        <h3>Case III — Mixed Nonlinear Perturbation: $X_{\text{new}} = \mathrm{sign}(X) \cdot \sqrt{|X|},\quad Y_{\text{new}} = e^{Y}$</h3>
+        <div class="img-row">
+            <div style="width: 48%;">
+                <img src="https://codimd.web.cern.ch/uploads/upload_89f3f5536882a41e9cf21747213940a9.png" alt="Case III Scatter">
+            </div>
+            <div style="width: 45%;">
+                <img src="https://codimd.web.cern.ch/uploads/upload_0df67a92f82fe774174eef3f53de449f.png" alt="Case III Vector Field">
+            </div>
+        </div>
+
+        <p>As evident from the above diagrams and plots that the system works well both in terms of discovering symmetries and finding the hidden coordinate transformations.</p>
+
+        <h2>Conclusion and Future Directions</h2>
+        <p>
+            In this work, we proposed a stable, regression-based framework for symmetry discovery. Our approach directly learns the infinitesimal generators of a Lie group. It was demonstrated that this method can be used to recover known symmetry groups such as $\mathrm{SO}(N)$ and $\mathrm{SO}^+(3,1)$, and can be extended to systems where the symmetry is not linearly expressible in the original coordinates. For such cases, we introduced a learnable coordinate transformation via an encoder–decoder architecture to reveal latent representations where the symmetry acts linearly.
+        </p>
+        <p>
+            Future work will involve applying this framework to real-world datasets, scaling it to larger and more complex groups, and integrating the discovered symmetries into downstream tasks such as classification, regression and anomaly detection systems.
+        </p>
+
+        <h2>References</h2>
+        <ol>
+            <li><a href="https://arxiv.org/abs/1703.06114">https://arxiv.org/abs/1703.06114</a></li>
+            <li><a href="https://arxiv.org/pdf/1905.11697">https://arxiv.org/pdf/1905.11697</a></li>
+            <li><a href="https://arxiv.org/abs/2006.04780">https://arxiv.org/abs/2006.04780</a></li>
+            <li><a href="https://arxiv.org/abs/2201.08187">https://arxiv.org/abs/2201.08187</a></li>
+            <li><a href="https://arxiv.org/abs/1612.08498">https://arxiv.org/abs/1612.08498</a></li>
+            <li><a href="https://arxiv.org/pdf/2010.11882">https://arxiv.org/pdf/2010.11882</a></li>
+            <li><a href="https://arxiv.org/abs/2302.00236">https://arxiv.org/abs/2302.00236</a></li>
+            <li><a href="https://arxiv.org/abs/2109.09721">https://arxiv.org/abs/2109.09721</a></li>
+        </ol>
+
+    </div>
+
+    <footer>
+        <div class="container">
+            &copy; 2024 Research Blog. Powered by Academic Minimalist Theme.
+        </div>
+    </footer>
+
+</body>
+</html>
